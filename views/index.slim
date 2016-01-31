@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title Foo
+    link rel='stylesheet' type='text/css' href='style.css'
+    script type='text/javascript' src='jquery-2.2.0.js'
+    script type='text/javascript' src='script.js'
+  body
+    h1 Hello World
+
+    .container
+      .breadcrumbs
+        .breadcrumb data-index="-1" data-name="Root"
+          | Root
+
+      .asset-group
+        - %w(Foo Bar Baz).each_with_index do |name, index|
+          .asset-columns data-index=index data-name=name id="columns-#{index}" style="left: #{(index + 1) * 50}%"
+            - tree[index].each_with_index do |(parent,children), i|
+              .asset-column data-parent=(parent.nil? ? '0' : parent[:id]) data-index=i
+                h2= name
+                - children.each_with_index do |child, j|
+                  .asset-item data-name=child[:name] class=(index < 2 ? 'has-children' : '') data-index=j data-id=child[:id]
+                    = child[:name]

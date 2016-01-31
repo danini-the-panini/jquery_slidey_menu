@@ -1,0 +1,60 @@
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+body
+  background: #eee
+  font-family: 'Helvetica'
+
+.breadcrumbs
+  height: 20px
+
+  .breadcrumb
+    float: left
+    padding-right: 0.5rem
+
+    &:before
+      content: '> '
+
+    &:hover
+      text-decoration: underline
+      cursor: pointer
+
+.container
+  margin-left: 100px
+  margin-top: 50px
+
+.asset-group
+  position: relative
+  width: 50%
+  height: 100px
+  background: white
+  border: 1px solid black
+  overflow: hidden
+
+  .asset-columns
+    position: absolute
+    width: 50%
+
+    .asset-column
+      position: absolute
+      width: 100%
+      padding-left: 0.5rem
+
+      h2
+        text-transform: uppercase
+        color: #999
+        font-size: 14px
+
+      .asset-item
+        border-top: 1px solid #333
+        width: 100%
+        padding: 0.1rem 0
+
+        &:last-child
+          border-bottom: 1px solid #333
+
+        &:hover
+          background: #FFC
+          cursor: pointer

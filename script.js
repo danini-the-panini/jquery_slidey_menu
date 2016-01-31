@@ -12,27 +12,6 @@ $(function() {
     elem.animate(opts, 200);
   }
 
-  function setVertical(parentId) {
-    var hIndex = leftIndex + 1;
-    $('.asset-columns#columns-' + hIndex + ' .asset-column').each(function() {
-      var column = $(this);
-      var i = column.data('index');
-      var thisParentId = column.data('parent');
-      var top, opacity, visible;
-      if (thisParentId < parentId ) {
-        top = -100; opacity = 0; visible = false;
-      } else if (thisParentId > parentId) {
-        top = 100; opacity = 0; visible = false;
-      } else {
-        top = 0; opacity = 1; visible = true;
-      }
-      column.css({
-        top: '' + top + 'px',
-        opacity: '' + opacity
-      });
-    });
-  }
-
   function animateToIndex(index) {
     leftIndex = index;
     var visualIndex = index - 1;
@@ -40,16 +19,13 @@ $(function() {
       var columns = $(this);
       var left, opacity, visible;
       if (i < visualIndex) {
-        left = -50; opacity = 0; visible = false;
+        left = -50; opacity = 0;
       } else if (i > visualIndex + 1) {
-        left = 100; opacity = 0; visible = false;
+        left = 100; opacity = 0;
       } else {
-        left = 50 * (i - visualIndex); opacity = 1; visible = true;
+        left = 50 * (i - visualIndex); opacity = 1;
       }
-      animoo(columns, {
-        left: '' + left + '%',
-        opacity: '' + opacity
-      }, visible);
+      animoo(columns, { left: '' + left + '%', opacity: '' + opacity });
     });
   };
 
@@ -61,18 +37,34 @@ $(function() {
       var thisParentId = column.data('parent');
       var top, opacity, visible;
       if (thisParentId < parentId ) {
-        top = -100; opacity = 0; visible = false;
+        top = -100; opacity = 0;
       } else if (thisParentId > parentId) {
-        top = 100; opacity = 0; visible = false;
+        top = 100; opacity = 0;
       } else {
-        top = 0; opacity = 1; visible = true;
+        top = 0; opacity = 1;
       }
-      animoo(column, {
-        top: '' + top + 'px',
-        opacity: '' + opacity
-      }, visible);
+      animoo(column, { top: '' + top + 'px', opacity: '' + opacity
+      });
     });
   };
+
+  function setVertical(parentId) {
+    var hIndex = leftIndex + 1;
+    $('.asset-columns#columns-' + hIndex + ' .asset-column').each(function() {
+      var column = $(this);
+      var i = column.data('index');
+      var thisParentId = column.data('parent');
+      var top, opacity, visible;
+      if (thisParentId < parentId ) {
+        top = -100; opacity = 0;
+      } else if (thisParentId > parentId) {
+        top = 100; opacity = 0;
+      } else {
+        top = 0; opacity = 1;
+      }
+      column.css({ top: '' + top + 'px', opacity: '' + opacity });
+    });
+  }
 
   animateToIndex(0);
   animateVertical(0, 0);
